@@ -3,8 +3,14 @@ import AddNewOperation from './Components/AddNewOperation.jsx'
 import LatestOperations from './Components/LatestOperations.jsx'
 import Income from './Components/TotalIncome.jsx'
 import './App.css'
+import { useState } from 'react'
+import Data from './db/Data.js'
 
 function App() {
+  const [data, setData] = useState(Data)
+  const hadleAdd = (operation) =>{
+    setData([...data, operation])
+  }
   return (
     <>
        <NavBar />
@@ -14,7 +20,7 @@ function App() {
        </div>
        <div className='container '>
         <div className='row'>
-              <Income 
+              <Income data={data}
               />
         </div>
        </div>
@@ -24,7 +30,7 @@ function App() {
         <div className='row'>
           {/* إضافة عملية جديدة */}
           <div className='col-md-6'>
-            <AddNewOperation />
+            <AddNewOperation onAdd={hadleAdd}/>
           </div>
           {/* العمليات الأخيرة */}
            <div className='col-md-6'>
