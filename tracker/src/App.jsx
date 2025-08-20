@@ -8,9 +8,11 @@ import Data from './db/Data.js'
 
 function App() {
   const [data, setData] = useState(Data)
+  
   const hadleAdd = (operation) =>{
     setData([...data, operation])
   }
+
   return (
     <>
        <NavBar />
@@ -34,7 +36,7 @@ function App() {
           </div>
           {/* العمليات الأخيرة */}
            <div className='col-md-6'>
-            <LatestOperations />
+            <LatestOperations getData={data}/>
           </div>
         </div>
       </div>

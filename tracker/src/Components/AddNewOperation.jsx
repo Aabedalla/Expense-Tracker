@@ -7,8 +7,9 @@ const AddNewOperation = ({onAdd}) => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        if(OperationType.trim() && OperationValue !== 0 && !isNaN(OperationValue)){
+        if(OperationType.trim() && OperationValue !== 0 ){
             onAdd({
+                id: length + 1,
                 type: OperationType,
                 value: Number(OperationValue),
                 date: new Date().toLocaleDateString('ar-EG', {
@@ -32,7 +33,7 @@ const AddNewOperation = ({onAdd}) => {
                 <label className="form-label">نوع العملية</label>
                 <input type="text" className="form-control mb-2" value={OperationType} onChange={(e)=> setOperationType(e.target.value)} placeholder="مثال: تسوق, راتب, إيجار..." required/>
                 <label className="form-label">المبلغ</label>
-                <input type="number" className="form-control mb-2" value={OperationValue} onChange={(e)=> setOperationValue(Number(e.target.value))} placeholder="المبلغ (موجب للدخل, سالب للصرف)" required/>
+                <input type="text" className="form-control mb-2" value={OperationValue} onChange={(e)=> setOperationValue(e.target.value)} placeholder="المبلغ (موجب للدخل, سالب للصرف)" required/>
                 <span className="text-xs text-gray-400">استخدم الأرقام الموجبة للدخل والسالبة للمصروفات</span>
                 <button type="submit" className="btn btn-primary mt-2">إضافة العملية</button>
         </form>
