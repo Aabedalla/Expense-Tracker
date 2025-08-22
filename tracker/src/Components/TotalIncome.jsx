@@ -1,7 +1,9 @@
 import { FaSackDollar, FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 import { getTotals } from "../db/calcutaion.js";
-
+import { useContext } from "react";
+import { Theme } from "../theme/ThemeContext.jsx";
 const Income = ({data}) => {
+    const { theme } = useContext(Theme);
     const { totalIncome, totalExpense, balance } = getTotals(data);
 
     const CardData = [
@@ -15,11 +17,11 @@ const Income = ({data}) => {
                 const Icon = item.icon; 
                 return (
                     <div key={item.id} className="col-md-4 my-2">
-                        <div className="bg-[#181b1f] px-10 py-3 flex justify-between items-center rounded-md shadow-lime-800 shadow-xl">
+                        <div className={`${theme === 'dark' ? "bg-[#181b1f] border-2 border-lime-600  text-white": "bg-white text-black border-2 border-green-500"} px-10 py-3 flex justify-between items-center rounded-md shadow-lime-800 shadow-xl`}>
                             {/* العنوان و اجمالي الدخل */}
                             <div>
-                                <h5 className="text-white">{item.title}</h5>
-                                <h3 className="text-white">${item.value}</h3>
+                                <h5 className={`${theme === 'dark'? 'text-white': 'text-black'}`}>{item.title}</h5>
+                                <h3 className={`${theme === 'dark'? 'text-white': 'text-black'}`}>${item.value}</h3>
                             </div>
                             {/* ايقونة */}
                             <div className={`${item.color} p-2 rounded-full ${item.bg} text-2xl`}>
